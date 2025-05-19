@@ -1,0 +1,31 @@
+Как запустить тест
+locust -f locustfile.py
+
+После этого перейдите по адресу:
+http://localhost:8089
+
+Настройки в интерфейсе
+Number of users to simulate : например, 100
+Spawn rate (users spawned/second) : например, 10
+Host: https://petstore.swagger.io
+Нажмите Start swarming , чтобы начать нагрузку.
+
+Что вы увидите после запуска
+В веб-интерфейсе будут отображаться метрики:
+
+Average Response Time — среднее время отклика
+Requests per second — количество запросов в секунду
+Failures — процент ошибок
+Графики: latency, requests, failures, RPS и др.
+Данные по каждому типу запроса отдельно
+
+Полезные советы:
+Чтобы проверить корректность ответов сервера, можно использовать assertions:
+
+with self.client.get("/v2/pet/1", catch_response=True) as response:
+    if response.status_code != 200:
+        response.failure("Got wrong status code")
+
+Для более сложных сценариев используйте on_start() , чтобы авторизовываться или создавать данные перед началом теста.
+
+Используйте CSV-файлы или переменные окружения, чтобы параметризовать данные, если требуется работать с реальными аккаунтами, токенами и т.д.
