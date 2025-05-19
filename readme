@@ -1,5 +1,5 @@
 Как запустить тест
-locust -f locustfile.py
+locust -f test.py
 
 После этого перейдите по адресу:
 http://localhost:8089
